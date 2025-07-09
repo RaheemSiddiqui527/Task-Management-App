@@ -28,7 +28,8 @@ import {
   Card,
   CardContent,
   Fab,
-  Snackbar
+  Snackbar,
+  Box
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { 
@@ -523,9 +524,24 @@ function Dashboard() {
           onClose={hideSnackbar}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         >
-          <Alert onClose={hideSnackbar} severity={snackbar.severity} variant="filled">
-            {snackbar.message}
-          </Alert>
+          <div style={{ 
+            backgroundColor: snackbar.severity === 'error' ? '#f44336' : '#4caf50',
+            color: 'white',
+            padding: '12px 16px',
+            borderRadius: '4px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+            <span>{snackbar.message}</span>
+            <IconButton 
+              size="small" 
+              onClick={hideSnackbar}
+              style={{ color: 'white', marginLeft: '8px' }}
+            >
+              <Close fontSize="small" />
+            </IconButton>
+          </div>
         </Snackbar>
       </Container>
     </div>
